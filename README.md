@@ -79,7 +79,7 @@ There are two example lambda functions included in this starter project (called 
 
 There are `package.json` scripts provided that execute corresponding aws-sam-cli commands:
 
-Make sure that lambdas have been bundled:
+Make sure that your lambda function bundles have been built:
 ```
 npm run build
 ```
@@ -104,7 +104,7 @@ Test our your live endpoints by connecting to the URLs (given in the previous st
 * https://141ab15hv2.execute-api.us-east-1.amazonaws.com/Prod/hello
 * https://141ab15hv2.execute-api.us-east-1.amazonaws.com/Prod/goodbye
 
-To delete everything you can undeply your Cloudformation stack:
+To delete everything you can undeploy your Cloudformation stack:
 ```
 npm run undeploy
 ```
