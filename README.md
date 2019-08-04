@@ -94,7 +94,7 @@ Deploy a Cloudformation stack to standup the resources:
 npm run deploy
 ```
 
-Find out the relvant URLs and resource IDs described as ouputs:
+Find out the relevant URLs and resource IDs described as ouputs:
 ```
 npm run outputs
 ```
