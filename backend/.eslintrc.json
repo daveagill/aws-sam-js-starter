@@ -15,7 +15,7 @@
        "no-invalid-this": "error",
        "no-use-before-define": "error",
        "global-require": "error",
-       "block-spacing": "error",]
+       "block-spacing": "error",
        "comma-dangle": "error",
        "comma-spacing": "error",
        "eol-last": "error",
