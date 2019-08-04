@@ -1,5 +1,7 @@
 # Serverless Backend Starter Project (AWS SAM + Javascript)
 
+[![Build Status](https://travis-ci.com/daveagill/aws-sam-js-starter.svg?branch=master)](https://travis-ci.com/daveagill/aws-sam-js-starter)
+
 A simple starter project that can be used to get going building a serverless backend for your SaaS application with Javascript using AWS SAM.
 
 ### Features:
