@@ -9,7 +9,11 @@
     "test": "jest",
     "build": "webpack",
     "build.watch": "webpack --watch",
-    "serve.api": "sam local start-api"
+    "serve.api": "sam local start-api",
+    "package": "sam package --s3-bucket $npm_config_bucketname --output-template-file build/packaged-template.yaml",
+    "deploy": "sam deploy --template-file ./build/packaged-template.yaml --stack-name $npm_config_stackname --capabilities CAPABILITY_IAM",
+    "undeploy": "aws cloudformation delete-stack --stack-name $npm_config_stackname",
+    "outputs": "aws cloudformation describe-stacks --stack-name $npm_config_stackname --query \"Stacks[].Outputs\""
   },
   "dependencies": {
     "axios": "^0.18.0"

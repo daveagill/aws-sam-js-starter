@@ -2,18 +2,6 @@
 
 A simple starter project that can be used to get going building a serverless backend for your SaaS application with Javascript using AWS SAM.
 
-This project is an alternative to bootstrapping a project using the `sam init` command. Benefits of using _this_ starter include:
-
-* One package.json for the whole backend (not one per lambda).
-* Shared node_modules across all lambda functions.
-* Generates smaller, single-file code bundles per lambda.
-* Automatically rebuilds after code changes.
-* Jest for unit-testing instead of Mocha + Chai.
-* Webpack, enables easy inclusion of additional loaders & plugins.
-* Code linting.
-* Everything is in the `backend/` folder so you can easily add a `frontend/` folder and build a SaaS application with your favourite frontend framework (e.g. create-react-app).
-
-
 ### Features:
 
 * AWS SAM (Lambda & API Gateway)
@@ -21,6 +9,19 @@ This project is an alternative to bootstrapping a project using the `sam init` c
 * Webpack (in `--watch` mode) to auto-rebundle code & dependencies. __This replaces the need for `sam build`__
 * Unit testing with Jest
 * Linting with ESLint
+
+### Why Use This Starter?
+
+This project is an alternative to bootstrapping a project using the `sam init` command. Benefits of using _this_ starter include:
+
+* Easier to manage with one package.json and node_modules for the whole backend (not one per lambda).
+* Generates smaller, single-file code bundles per lambda.
+* Automatically rebuilds after code changes.
+* Jest for unit-testing instead of Mocha + Chai.
+* Webpack, enables easy inclusion of additional loaders & plugins.
+* Code linting.
+* Everything is in the `backend/` folder so you can easily add a `frontend/` folder and build a SaaS application with your favourite frontend framework (e.g. create-react-app).
+
 
 ### Pre-Requisites:
 * Node.js
@@ -37,6 +38,22 @@ brew install aws-sam-cli
 ```
 
 ### Getting Started
+
+Ensure that the aws-cli is configured with auth keys and a desired region by running:
+
+```
+aws configure
+```
+
+Create an S3 bucket used to host the source-code:
+
+```
+aws s3 mb s3://mybucket
+```
+
+Edit the project's `.npmrc` file and set the name of the S3 bucket you just created as well as a name for a Cloudformation stack that will be automatically created when deployed.
+
+### Running Locally
 
 Open two command terminals.
 
@@ -58,8 +75,36 @@ There are two example lambda functions included in this starter project (called 
 * http://localhost:3000/goodbye
 
 
-### Packaging and Deployment
+### Package and Deploy to AWS
 
-For now just use `sam` commands to do this [as documented](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-deploying.html#serverless-sam-cli-using-package-and-deploy) but I plan to add scripts to make this easier.
+There are `package.json` scripts provided that execute corresponding aws-sam-cli commands:
 
-Just be aware when using `sam package` that this starter project does not emit the built lambdas into the `.aws-sam/` directory like the `sam build` command would have done (we use a `build/` directory instead) and nor does it copy the template.yaml file so you should point to the original yaml file using the `--template-file` argument.
+Make sure that lambdas have been bundled:
+```
+npm run build
+```
+
+Upload the bundles to the S3 bucket and generate a corresponding yaml template file:
+```
+npm run package
+```
+
+Deploy a Cloudformation stack to standup the resources:
+```
+npm run deploy
+```
+
+Find out the relvant URLs and resource IDs described as ouputs:
+```
+npm run outputs
+```
+
+Test our your live endpoints by connecting to the URLs (given in the previous step), e.g.
+
+* https://141ab15hv2.execute-api.us-east-1.amazonaws.com/Prod/hello
+* https://141ab15hv2.execute-api.us-east-1.amazonaws.com/Prod/goodbye
+
+To delete everything you can undeply your Cloudformation stack:
+```
+npm run undeploy
+```
