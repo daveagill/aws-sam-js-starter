@@ -1,6 +1,5 @@
 const axios = require('axios');
 const url = 'http://checkip.amazonaws.com/';
-let response;
 
 /**
  *
@@ -17,7 +16,7 @@ let response;
 exports.lambdaHandler = async function (/* event, context */) {
     try {
         const ret = await axios(url);
-        response = {
+        return {
             'statusCode': 200,
             'body': JSON.stringify({
                 message: 'goodbye world',
@@ -26,8 +25,9 @@ exports.lambdaHandler = async function (/* event, context */) {
         };
     } catch (err) {
         console.log(err);
-        return err;
+        return {
+            'statusCode': 500,
+            'body': JSON.stringify(err)
+        };
     }
-
-    return response;
 };
