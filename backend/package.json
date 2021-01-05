@@ -16,7 +16,7 @@
     "outputs": "aws cloudformation describe-stacks --stack-name $npm_config_stackname --query \"Stacks[].Outputs\""
   },
   "dependencies": {
-    "axios": "^0.18.0"
+    "axios": "^0.21.1"
   },
   "devDependencies": {
     "eslint": "^6.2.2",
